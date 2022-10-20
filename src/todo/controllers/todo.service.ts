@@ -13,7 +13,11 @@ export class TodoController {
         return this.todoService.create(todo);
     }
 
-    callFindAll() {
+    callFindAll(): Promise<Todo[]> {
         return this.todoService.findAll();
+    }
+
+    callUpdate(todo: Todo) {
+        return this.todoService.update(todo);
     }
 }
