@@ -1,27 +1,35 @@
-import { Controller } from "@nestjs/common";
+import { Controller, Post, Get, Put, Delete, HttpCode, HttpStatus, Param, ParseUUIDPipe, Body } from "@nestjs/common";
 import { Todo } from "../entities/todo.entity";
 import { TodoService } from "../services/todo.service";
 
-@Controller()
+@Controller('/todo')
 export class TodoController {
 
     constructor(
         private readonly todoService: TodoService
     ) { }
 
-    callCreate(todo: Todo): Promise<Todo> {
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    callCreate(@Body() todo: Todo): Promise<Todo> {
         return this.todoService.create(todo);
     }
 
+    @Get()
+    @HttpCode(HttpStatus.OK)
     callFindAll(): Promise<Todo[]> {
         return this.todoService.findAll();
     }
 
-    callUpdate(todo: Todo) {
+    @Put()
+    @HttpCode(HttpStatus.OK)
+    callUpdate(@Body() todo: Todo) {
         return this.todoService.update(todo);
     }
 
-    callDelete(id: string) {
+    @Delete('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    callDelete(@Param('id', ParseUUIDPipe) id: string) {
         return this.todoService.delete(id);
     }
 }
