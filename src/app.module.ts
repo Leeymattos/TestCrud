@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { todoModule } from './todo/todo.module';
 
 @Module({
   imports: [
@@ -14,7 +15,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: process.env.DB_PASSWORD,
       entities: [__dirname + '/**/*.entity{.js,.ts}'],
       synchronize: true
-    })],
+    }),
+    todoModule
+  ],
   controllers: [],
   providers: [],
 })
