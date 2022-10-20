@@ -21,7 +21,7 @@ export class TodoService {
     }
 
     async update(todo: Todo): Promise<Todo> {
-        const todoFound = await this.todoRepository.find({
+        const todoFound = await this.todoRepository.findOne({
             where: {
                 id: todo.id
             }
