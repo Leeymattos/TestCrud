@@ -9,7 +9,7 @@ export class Todo {
 
     @IsNotEmpty()
     @Column({ length: 200, nullable: false })
-    taks: string
+    description: string
 
     @IsNotEmpty()
     @Column({ default: false })
