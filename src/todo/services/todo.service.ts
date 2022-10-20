@@ -20,13 +20,4 @@ export class TodoService {
         return await this.todoRepository.find();
     }
 
-    async findById(id: string): Promise<Todo> {
-        const todoFound = await this.todoRepository.findOneBy({ id });
-
-        if (!todoFound) {
-            throw new HttpException('Todo não encontrada', HttpStatus.NOT_FOUND);
-        }
-
-        return todoFound;
-    }
 }
