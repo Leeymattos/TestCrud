@@ -12,4 +12,8 @@ export class TodoController {
     callCreate(todo: Todo): Promise<Todo> {
         return this.todoService.create(todo);
     }
+
+    callFindAll() {
+        return this.todoService.findAll();
+    }
 }
