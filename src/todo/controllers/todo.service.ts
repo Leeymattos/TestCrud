@@ -20,4 +20,8 @@ export class TodoController {
     callUpdate(todo: Todo) {
         return this.todoService.update(todo);
     }
+
+    callDelete(id: string) {
+        return this.todoService.delete(id);
+    }
 }
