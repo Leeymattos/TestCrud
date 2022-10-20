@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { DeleteResult, Repository } from "typeorm";
 import { Todo } from "../entities/todo.entity";
 
 
@@ -32,6 +32,16 @@ export class TodoService {
         }
 
         return await this.todoRepository.save(todo);
+    }
+
+    async delete(id: string): Promise<DeleteResult> {
+        const todoFound = await this.todoRepository.findOneBy({ id });
+
+        if (!todoFound) {
+            throw new HttpException('Todo não encontrado', HttpStatus.NOT_FOUND);
+        }
+
+        return this.todoRepository.delete(id);
     }
 
 }
