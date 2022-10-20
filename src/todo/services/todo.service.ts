@@ -20,4 +20,18 @@ export class TodoService {
         return await this.todoRepository.find();
     }
 
+    async update(todo: Todo): Promise<Todo> {
+        const todoFound = await this.todoRepository.find({
+            where: {
+                id: todo.id
+            }
+        });
+
+        if (!todoFound || !todo.id) {
+            throw new HttpException('Todo não encontrado', HttpStatus.NOT_FOUND);
+        }
+
+        return await this.todoRepository.save(todo);
+    }
+
 }
