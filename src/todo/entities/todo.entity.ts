@@ -11,7 +11,6 @@ export class Todo {
     @Column({ length: 200, nullable: false })
     description: string
 
-    @IsNotEmpty()
     @Column({ default: false })
     isComplete: boolean
 }
